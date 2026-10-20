@@ -1,6 +1,6 @@
 import { templates, stats, bySlug, loadRaw, markdownBody } from './data.js'
 import { getLang, setLang, tr, describe } from './i18n.js'
-import { toPrompt } from './export.js'
+import { toPrompt, bundleFiles } from './export.js'
 import { renderDocs } from './docs.js'
 import { BASE, TABS, link, matchRoute, renderRoute, pageTitle, pageDescription, galleryGrid, filterTemplates } from './views.js'
 import './style.css'
@@ -86,6 +86,12 @@ function flash(btn, text) {
   setTimeout(() => (btn.textContent = old), 1400)
 }
 
+function saveFile(blob, filename) {
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: filename })
+  a.click()
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000)
+}
+
 async function copyText(text, btn) {
   try {
     await navigator.clipboard.writeText(text)
@@ -105,6 +111,14 @@ function bindDetail(t, tab) {
     if (raw != null) copyText(raw, e.currentTarget)
     else rawReady.then((r) => copyText(r, e.currentTarget))
   })
+
+  app.querySelectorAll('[data-export-all]').forEach((btn) =>
+    btn.addEventListener('click', async () => {
+      const [{ zip }, r] = await Promise.all([import('./zip.js'), rawReady])
+      const files = bundleFiles(t, { lang: getLang(), description: describe(t), raw: r, url: new URL(link.template(t.slug), location.href).href })
+      saveFile(new Blob([zip(files)], { type: 'application/zip' }), `${t.slug}-lookbook.zip`)
+    }),
+  )
 
   // Tabs: arrow keys move between tabs (WAI-ARIA tabs pattern).
   const tabs = [...app.querySelectorAll('[role="tab"]')]
@@ -190,10 +204,7 @@ app.addEventListener('click', (e) => {
 
   const dl = e.target.closest('[data-download]')
   if (dl) {
-    const blob = new Blob([document.getElementById(dl.dataset.download).textContent], { type: 'text/plain' })
-    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: dl.dataset.filename })
-    a.click()
-    setTimeout(() => URL.revokeObjectURL(a.href), 1000)
+    saveFile(new Blob([document.getElementById(dl.dataset.download).textContent], { type: 'text/plain' }), dl.dataset.filename)
     return
   }
 

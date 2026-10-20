@@ -13,7 +13,7 @@ Lookbook 把 [`../design-md/`](../design-md) 里的每一份 DESIGN.md 渲染成
   - **页面预览**：用该模板的令牌渲染一个完整的示例落地页。
   - **设计令牌**：色板（点击复制）、字号层级、圆角和间距。
   - **组件**：`components:` 里的每个组件都渲染成实物样例。
-  - **导出**：AI 提示词（可附带完整 DESIGN.md）、CSS 变量、Tailwind v4 `@theme`、Tailwind v3 配置、W3C Design Tokens JSON（可导入 Figma 的 Tokens Studio）。
+  - **导出**：「一键导出」打包下载全部格式（.zip）；也可以单独复制 AI 提示词（可附带完整 DESIGN.md）、CSS 变量、Tailwind v4 `@theme`、Tailwind v3 配置、W3C Design Tokens JSON（可导入 Figma 的 Tokens Studio）。
   - **原始文档**：渲染后的 DESIGN.md 全文。
 - **风格对比**：两套设计系统在同一个示例页面上并排比较。
 - **中文 / English** 界面切换。模板简介有中文译文，见 [`src/zh-descriptions.js`](src/zh-descriptions.js)。
@@ -48,7 +48,8 @@ npm run preview  # 本地预览构建结果，http://127.0.0.1:5179/Lookbook/
 | `src/core.js` | 纯解析逻辑：`CATALOG.md` 分类、YAML 前置数据、`{colors.x}` 引用解析，以及无前置数据模板的颜色和字体推断。 |
 | `vite.config.js` | `virtual:lookbook-data` 插件：构建时解析全部模板，只把令牌数据打进主包；DESIGN.md 原文按需懒加载。 |
 | `src/render.js` | 示例页面、缩略图、令牌和组件的渲染，带对比度保护。 |
-| `src/export.js` | CSS、Tailwind、DTCG 和 AI 提示词导出。 |
+| `src/export.js` | CSS、Tailwind、DTCG 和 AI 提示词导出，以及一键导出的文件清单。 |
+| `src/zip.js` | 不压缩的极简 ZIP 打包，供一键导出使用，不引入第三方依赖。 |
 | `src/views.js` | 所有页面的 HTML，以及路由匹配。客户端和预渲染共用这一份。 |
 | `src/main.js` | 客户端路由（History API）和交互。 |
 | `tests/` | vitest 测试。 |

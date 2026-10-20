@@ -124,7 +124,7 @@ main { flex: 1; }
 .d-cat code { font-size: 12px; }
 .d-desc { color: var(--mute); max-width: 820px; margin: 0; }
 .d-warn { margin: 12px 0 0; padding: 8px 12px; border-radius: 8px; background: color-mix(in srgb, #f5d77a 30%, var(--panel)); font-size: 13px; }
-.d-actions { flex: none; display: flex; gap: 8px; }
+.d-actions { flex: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .d-cat a:hover { color: var(--ink); text-decoration: underline; }
 .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 40px; }
 .pager a { padding: 8px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--mute); max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -205,6 +205,7 @@ main { flex: 1; }
 .xp { margin-bottom: 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); overflow: hidden; }
 .xp-head { display: flex; gap: 16px; justify-content: space-between; align-items: flex-start; padding: 16px 18px; border-bottom: 1px solid var(--line); }
 .xp-head h2 { margin: 0 0 4px !important; font-size: 16px !important; }
+.xp-all .xp-head { border-bottom: 0; }
 .xp-hint { margin: 0; color: var(--mute); font-size: 13px; max-width: 640px; }
 .xp-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; flex: none; }
 .check { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--mute); cursor: pointer; }

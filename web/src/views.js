@@ -126,6 +126,14 @@ function codeBlock(id, title, hint, code, filename) {
 export function exportTab(t, raw = '') {
   const prompt = toPrompt(t, { lang: getLang(), description: describe(t) })
   return `${t.structured ? '' : `<p class="d-warn">${tr('exportApprox')}</p>`}
+    <section class="xp xp-all" id="xp-all">
+      <div class="xp-head">
+        <div><h2>${tr('exportAllTitle')}</h2><p class="xp-hint">${tr('exportAllHint')}</p></div>
+        <div class="xp-actions">
+          <button type="button" class="btn btn-primary" data-export-all>${tr('exportAllBtn')}</button>
+        </div>
+      </div>
+    </section>
     <section class="xp" id="xp-prompt">
       <div class="xp-head">
         <div><h2>${tr('promptTitle')}</h2><p class="xp-hint">${tr('promptHint')}</p></div>
@@ -168,6 +176,7 @@ export function detailPage(t, tab = 'preview', { docsHtml = '' } = {}) {
           ${t.structured ? '' : `<p class="d-warn">${tr('approxWarn')}</p>`}
         </div>
         <div class="d-actions">
+          <button type="button" class="btn btn-primary" data-export-all>${tr('exportAll')}</button>
           <button type="button" class="btn" id="copy-md">${tr('copyMd')}</button>
           <a class="btn" href="${link.compare(t.slug)}">${tr('compare')}</a>
         </div>

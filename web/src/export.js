@@ -301,3 +301,52 @@ export function toPrompt(t, { lang = 'zh', description = '', raw = '' } = {}) {
   lines.push('', P.task, '')
   return lines.join('\n')
 }
+
+/* ---------------- one-click bundle ---------------- */
+
+const BUNDLE_README = {
+  zh: (t, approx, url) => `# ${t.name} · 设计系统包
+
+由 Lookbook 导出${url ? `：${url}` : '。'}
+${approx ? '\n> 该模板没有 YAML 令牌，以下令牌由 DESIGN.md 中的颜色和字体推断而来，仅作近似参考。\n' : ''}
+| 文件 | 用途 |
+|---|---|
+| \`DESIGN.md\` | 完整的设计系统文档。放到项目根目录，AI 编程助手可以随时参考。 |
+| \`PROMPT.md\` | AI 提示词。把它和你的需求一起发给 Claude、Cursor、Copilot 等。 |
+| \`tokens.css\` | CSS 变量。放进全局样式表，通过 \`var(--…)\` 使用。 |
+| \`tailwind.theme.css\` | Tailwind CSS v4：粘贴到入口 CSS 的 \`@import "tailwindcss";\` 之后。 |
+| \`tailwind.config.cjs\` | Tailwind CSS v3 配置，令牌会合并进默认主题。 |
+| \`tokens.json\` | W3C Design Tokens，可导入 Figma 插件 Tokens Studio 或 Style Dictionary。 |
+`,
+  en: (t, approx, url) => `# ${t.name} · design system kit
+
+Exported from Lookbook${url ? `: ${url}` : '.'}
+${approx ? '\n> This template has no YAML tokens; the tokens below are inferred from the colours and fonts in DESIGN.md and are approximate.\n' : ''}
+| File | Use |
+|---|---|
+| \`DESIGN.md\` | The full design system document. Keep it in your project root for AI coding assistants. |
+| \`PROMPT.md\` | AI prompt. Send it with your request to Claude, Cursor, Copilot and others. |
+| \`tokens.css\` | CSS variables. Add to your global stylesheet and use via \`var(--…)\`. |
+| \`tailwind.theme.css\` | Tailwind CSS v4: paste after \`@import "tailwindcss";\` in your entry CSS. |
+| \`tailwind.config.cjs\` | Tailwind CSS v3 config; tokens extend the default theme. |
+| \`tokens.json\` | W3C Design Tokens for Figma Tokens Studio or Style Dictionary. |
+`,
+}
+
+/**
+ * Every export format for one template, as files for a single download.
+ * `url` is the template's Lookbook page, linked from the bundle README.
+ * @returns {{name: string, data: string}[]}
+ */
+export function bundleFiles(t, { lang = 'zh', description = '', raw = '', url = '' } = {}) {
+  const dir = `${t.slug}-lookbook/`
+  return [
+    ['README.md', (BUNDLE_README[lang] || BUNDLE_README.zh)(t, !t.structured, url)],
+    ['DESIGN.md', raw],
+    ['PROMPT.md', toPrompt(t, { lang, description })],
+    ['tokens.css', toCSS(t)],
+    ['tailwind.theme.css', toTailwind4(t)],
+    ['tailwind.config.cjs', toTailwind3(t)],
+    ['tokens.json', toDTCG(t)],
+  ].map(([name, data]) => ({ name: dir + name, data }))
+}
