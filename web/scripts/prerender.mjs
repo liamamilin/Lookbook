@@ -54,22 +54,27 @@ try {
   /* ---------- OG images (Latin text only: CI runners have no CJK fonts) ---------- */
 
   const xml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-  const FONT = `Helvetica, Arial, 'DejaVu Sans', sans-serif`
+  // A bundled font keeps OG images identical locally and on CI (resvg silently drops
+  // text when no font matches, and runner system fonts vary).
+  const FONT = 'DejaVu Sans'
+  const fontDir = path.join(root, 'node_modules/dejavu-fonts-ttf/ttf')
+  const fontFiles = ['DejaVuSans.ttf', 'DejaVuSans-Bold.ttf'].map((f) => path.join(fontDir, f))
   const latin = (s) => String(s || '').replace(/[^\x20-\x7e—–·’]/g, '').trim()
   const clip = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s)
   const solidColors = (t) =>
     (t.structured ? Object.values(t.tokens.colors) : (t.legacyColors || []).map((c) => c.value)).filter((v) => typeof v === 'string' && /^(#|rgb)/i.test(v.trim()))
 
   function png(svg) {
-    return new Resvg(svg, { fitTo: { mode: 'width', value: 1200 }, font: { loadSystemFonts: true, defaultFontFamily: 'Arial' } }).render().asPng()
+    return new Resvg(svg, { fitTo: { mode: 'width', value: 1200 }, font: { fontFiles, loadSystemFonts: false, defaultFontFamily: FONT } }).render().asPng()
   }
 
   function templateOg(t) {
     const r = t.roles
     const strip = solidColors(t).slice(0, 10)
     const w = 1200 / Math.max(strip.length, 1)
-    const tag = clip(latin(t.tagline), 64)
-    const nameSize = t.name.length > 14 ? 96 : 128
+    const tag = clip(latin(t.tagline), 58)
+    // DejaVu Sans Bold averages ~0.66em per glyph; keep the name inside a 1040px line.
+    const nameSize = Math.min(128, Math.floor(1040 / (t.name.length * 0.66)))
     return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
       <rect width="1200" height="630" fill="${xml(r.canvas)}"/>
       <text x="80" y="110" font-family="${FONT}" font-size="26" font-weight="700" letter-spacing="4" fill="${xml(r.muted)}">LOOKBOOK</text>

@@ -1,3 +1,21 @@
+# Lookbook · 设计系统图鉴
+
+**在线访问：https://liamamilin.github.io/Lookbook/**
+
+Lookbook 把本仓库 `design-md/` 里的每一份 DESIGN.md 渲染成同一个示例页面，让你在动手之前就能看到一套设计系统用起来是什么样子。
+
+- **模板库**：84 套设计系统的缩略图，支持搜索、分类筛选和深色/浅色筛选。
+- **模板详情**：页面预览、设计令牌、组件样例和 DESIGN.md 原文。
+- **导出**：AI 提示词、CSS 变量、Tailwind v4/v3 配置、W3C Design Tokens JSON。
+- **风格对比**：两套设计系统在同一个示例页面上并排比较。
+- 中文 / English 界面。
+
+前端代码在 [`web/`](web/)，开发说明见 [`web/README.md`](web/README.md)。
+
+> 模板数据来自 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)（MIT 许可）。下面是上游仓库的原始 README，Lookbook 构建时会从中读取模板分类和简介，请不要改动它的结构。
+
+---
+
 
 <a href="https://github.com/VoltAgent/voltagent">
      <img width="1500"  alt="claude-skills" src="https://cdn.voltagent.dev/awesome-repo/logo.json.svg" />

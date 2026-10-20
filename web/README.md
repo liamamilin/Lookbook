@@ -2,6 +2,8 @@
 
 Lookbook 把 [`../design-md/`](../design-md) 里的每一份 DESIGN.md 渲染成同一个示例页面，让你在动手之前就能看到一套设计系统用起来是什么样子。
 
+在线访问：https://liamamilin.github.io/Lookbook/
+
 模板数据来自 [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)（MIT 许可）。
 
 ## 功能
