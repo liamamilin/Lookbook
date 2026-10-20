@@ -1,25 +1,21 @@
-# Contributing to Awesome Design MD
+# 参与贡献
 
-Thanks for contributing.
+欢迎提交 Issue 和 Pull Request：https://github.com/liamamilin/Lookbook/issues
 
-This repository is a curated collection of DESIGN.md files extracted from popular websites. Each file captures a site's complete visual language in a format any AI agent can read.
+## 新增或修改设计系统
 
-## How to Contribute
+1. 新建或修改 `design-md/<slug>/DESIGN.md`。建议使用 YAML 前置数据，包括 `colors`、`typography`、`rounded`、`spacing` 和 `components`。
+2. 在 [`CATALOG.md`](CATALOG.md) 对应的分类下添加或修改这一行：
+   `- [**Name**](https://getdesign.md/<slug>/design-md) - tagline`
+3. （可选）在 [`web/src/zh-descriptions.js`](web/src/zh-descriptions.js) 里补上中文简介。
+4. 在 `web/` 目录下运行 `npm test`，确认解析、渲染和对比度检查全部通过。
+5. 运行 `npm run dev`，在浏览器里实际看一遍预览效果。
 
-### Improve an Existing DESIGN.md
+## 修改前端
 
-If you notice issues with an existing file:
+前端代码在 [`web/`](web)，结构说明见 [`web/README.md`](web/README.md)。界面文案需要同时提供中文和英文，统一写在 `web/src/i18n.js` 里。
 
-1. **Open an issue first** to describe what you'd like to change and get feedback from maintainers
-2. Open the site's `DESIGN.md`
-3. Compare against the live site
-4. Fix incorrect hex values, missing tokens, or weak descriptions
-5. Update the `preview.html` and `preview-dark.html` if your changes affect displayed tokens
-6. Open a PR with before/after rationale
+## Pull Request
 
-
-We cannot accept DESIGN.md pull requests to maintain the quality of the existing collection.
-
-## License
-
-By contributing, you agree your contributions are provided under the repository license terms.
+- 一个 PR 只做一件事。
+- 修改了预览效果的，请附上前后对比截图。

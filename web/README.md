@@ -22,10 +22,10 @@ Lookbook 把 [`../design-md/`](../design-md) 里的每一份 DESIGN.md 渲染成
 
 ```bash
 npm install
-npm run dev      # http://127.0.0.1:5178
+npm run dev      # http://127.0.0.1:5178/Lookbook/
 npm test         # vitest：数据解析、全部页面渲染、导出格式、文字对比度
 npm run build    # 静态站点输出到 dist/
-npm run preview  # 本地预览构建结果，http://127.0.0.1:5179
+npm run preview  # 本地预览构建结果，http://127.0.0.1:5179/Lookbook/
 ```
 
 `npm run build` 会先执行 `vite build`，再运行 [`scripts/prerender.mjs`](scripts/prerender.mjs)。后者为每个页面生成预渲染的静态 HTML（模板库、关于、对比、每个模板、404），并生成 Open Graph 分享图、`robots.txt` 和 `sitemap.xml`。
@@ -45,7 +45,7 @@ npm run preview  # 本地预览构建结果，http://127.0.0.1:5179
 
 | 文件 | 内容 |
 |---|---|
-| `src/core.js` | 纯解析逻辑：README 分类、YAML 前置数据、`{colors.x}` 引用解析，以及无前置数据模板的颜色和字体推断。 |
+| `src/core.js` | 纯解析逻辑：`CATALOG.md` 分类、YAML 前置数据、`{colors.x}` 引用解析，以及无前置数据模板的颜色和字体推断。 |
 | `vite.config.js` | `virtual:lookbook-data` 插件：构建时解析全部模板，只把令牌数据打进主包；DESIGN.md 原文按需懒加载。 |
 | `src/render.js` | 示例页面、缩略图、令牌和组件的渲染，带对比度保护。 |
 | `src/export.js` | CSS、Tailwind、DTCG 和 AI 提示词导出。 |

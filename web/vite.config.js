@@ -7,7 +7,7 @@ import config from './lookbook.config.js'
 
 const repoRoot = fileURLToPath(new URL('..', import.meta.url))
 const designDir = path.join(repoRoot, 'design-md')
-const readmePath = path.join(repoRoot, 'README.md')
+const readmePath = path.join(repoRoot, 'CATALOG.md')
 const base = process.env.LOOKBOOK_BASE || config.base || '/'
 
 const VIRTUAL_ID = 'virtual:lookbook-data'

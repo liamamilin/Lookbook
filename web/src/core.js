@@ -1,10 +1,10 @@
-// Pure parsing of README.md + DESIGN.md text into template data.
+// Pure parsing of CATALOG.md + DESIGN.md text into template data.
 // No file access or bundler features here, so it runs in Vite (virtual module),
 // Node (prerender) and tests alike.
 import yaml from 'js-yaml'
 import { luminance, toRgb, contrast, isColor } from './color.js'
 
-/* ---------------- README: categories + taglines ---------------- */
+/* ---------------- CATALOG.md: categories + taglines ---------------- */
 
 export function parseReadme(text) {
   const meta = {}
@@ -215,7 +215,7 @@ function loadYaml(fm) {
 
 /**
  * @param {Record<string,string>} files  slug -> DESIGN.md text
- * @param {string} readme               root README.md text (categories + taglines)
+ * @param {string} readme               root CATALOG.md text (categories + taglines)
  */
 export function loadTemplates(files, readme) {
   const stats = { unresolved: [], parseErrors: [] }

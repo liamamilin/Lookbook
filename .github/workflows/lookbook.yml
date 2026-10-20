@@ -2,9 +2,9 @@ name: Lookbook
 
 on:
   push:
-    paths: ['web/**', 'design-md/**', 'README.md', '.github/workflows/lookbook.yml']
+    paths: ['web/**', 'design-md/**', 'CATALOG.md', '.github/workflows/lookbook.yml']
   pull_request:
-    paths: ['web/**', 'design-md/**', 'README.md', '.github/workflows/lookbook.yml']
+    paths: ['web/**', 'design-md/**', 'CATALOG.md', '.github/workflows/lookbook.yml']
   workflow_dispatch:
 
 jobs:
