@@ -1,0 +1,257 @@
+// UI strings in Chinese and English. Template descriptions/taglines and the DESIGN.md
+// documents themselves are source data and stay in their original English.
+
+import zh from './zh-descriptions.js'
+
+const dict = {
+  zh: {
+    gallery: '模板库',
+    appTagline: '设计系统图鉴',
+    tabExport: '导出',
+    compare: '对比',
+    compareTitle: '风格对比',
+    compareHint: '在同一个示例页面上并排查看两套设计系统。',
+    swap: '交换',
+    random: '随机',
+    viewDetail: '查看详情',
+    about: '关于',
+    aboutTitle: '关于 Lookbook',
+    aboutBody: [
+      'Lookbook 是一本设计系统图鉴：把每份 DESIGN.md 里的设计令牌渲染成同一个示例页面，让你在动手之前就能看到它“穿上身”是什么样子。',
+      'DESIGN.md 是写给 AI 编程助手的纯文本设计规范。挑好风格后，你可以复制 DESIGN.md 或现成的 AI 提示词交给 Claude、Cursor 等工具；如果要在代码里直接使用，也可以导出 CSS 变量、Tailwind 配置或 Design Tokens JSON。',
+      '预览由设计令牌自动生成。品牌的商业字体无法加载时，会按模板给出的字体栈退回到替代字体；只有文字描述、没有令牌的模板，预览为推断的近似效果。',
+    ],
+    howTitle: '怎么用',
+    howSteps: ['在模板库里浏览、搜索或按分类筛选。', '打开一个模板，查看页面预览、设计令牌和组件。', '在“导出”标签页复制 AI 提示词，或下载适合你技术栈的令牌文件。', '拿不准时，用“对比”把两套风格放在一起看。'],
+    creditsTitle: '致谢',
+    attribution: (link) => `模板数据来自 ${link}（MIT 许可）。`,
+    feedback: '反馈',
+    notFound: '页面不存在',
+    notFoundBody: '你访问的页面不存在，可能是链接有误或模板已被移除。',
+    backHome: '返回模板库',
+    skip: '跳到主要内容',
+    searchLabel: '搜索模板',
+    filterLabel: '模板筛选',
+    tabsLabel: '模板视图',
+    langLabel: 'Switch to English',
+    loading: '加载中…',
+    copy: '复制',
+    download: '下载',
+    promptTitle: 'AI 提示词',
+    promptHint: '连同你的需求一起发给 AI 编程助手（Claude、Cursor、Copilot 等）。提示词里已经写好了核心颜色、字体、圆角和关键组件。',
+    includeFull: '附带完整 DESIGN.md（更准确，但更长）',
+    cssTitle: 'CSS 变量',
+    cssHint: '放进全局样式表，在任意 CSS 中通过 var(--…) 使用。',
+    tw4Title: 'Tailwind CSS v4',
+    tw4Hint: '粘贴到入口 CSS 的 @import "tailwindcss"; 之后，即可使用 bg-primary、font-display、rounded-lg 等类名。',
+    tw3Title: 'Tailwind CSS v3',
+    tw3Hint: '保存为 tailwind.config.cjs（CommonJS 写法，ESM 项目也能直接用），令牌会合并进默认主题。',
+    dtcgTitle: 'Design Tokens JSON',
+    dtcgHint: 'W3C 设计令牌格式，可导入 Figma 插件 Tokens Studio 或 Style Dictionary。',
+    exportApprox: '该模板没有 YAML 令牌，导出内容由文档中的颜色和字体推断而来，仅作近似参考。',
+
+    search: '搜索模板（名称 / 描述）…',
+    all: '全部',
+    dark: '深色',
+    light: '浅色',
+    noMatch: '没有匹配的模板',
+    approx: '近似',
+    approxTitle: '该模板没有 YAML token，预览为根据文档推断的近似效果',
+    approxWarn: '该模板没有 YAML token 前置数据，预览由文档中的颜色和字体推断而来，仅作近似参考。',
+    tabPreview: '页面预览',
+    tabTokens: '设计令牌',
+    tabComponents: '组件',
+    tabDocs: '原始文档',
+    colors: '颜色',
+    typography: '字体',
+    scales: '尺度',
+    radius: '圆角',
+    spacing: '间距',
+    none: '无',
+    prev: '上一个',
+    next: '下一个',
+    copyMd: '复制 DESIGN.md',
+    copied: '已复制 ✓',
+    copyFail: '复制失败',
+    clickCopy: '点击复制',
+    swCopied: '已复制',
+    noFonts: '未在文档中找到字体信息',
+    noComps: '该模板没有结构化组件 token（仅有文档说明），请查看“原始文档”标签页。',
+    // sample copy inside previews
+    navLinks: ['产品', '解决方案', '价格', '文档'],
+    footLinks: ['隐私', '条款', '状态'],
+    signUp: '注册',
+    getStarted: '立即开始',
+    talkSales: '联系销售',
+    tagNew: (name) => `新品 · ${name} 2026`,
+    heroTitle: '打造人们喜爱的产品。',
+    heroSub: (name) => `根据 ${name} DESIGN.md 的设计令牌生成的预览——颜色、字号层级、圆角与组件规格。`,
+    cardTitles: ['更快交付', '轻松扩展', '为团队而设计'],
+    cardCopy: [
+      '一段简洁的功能介绍，用来展示正文在卡片中的排版效果。',
+      '次要文字、间距和圆角都直接取自模板的设计令牌。',
+      '每一种背景、边框和文字角色都来自 DESIGN.md 前置数据。',
+    ],
+    footer: (name) => `© 2026 ${name} 风格预览`,
+    pangram: '敏捷的棕色狐狸跳过了懒狗 — 1234567890',
+    pangramShort: '敏捷的棕色狐狸跳过了懒狗',
+    display: '设计即交付',
+    tablePlan: '套餐',
+    tablePrice: '价格',
+    tableRows: ['入门版', '专业版'],
+    placeholderSearch: '搜索…',
+    label: '标签',
+    readDocs: '阅读文档 →',
+    brand: '品牌',
+    items: ['选项一', '选项二', '选项三'],
+    sampleContent: '使用该组件的设计令牌渲染的示例内容。',
+    categories: {
+      'AI & LLM Platforms': 'AI 与大模型平台',
+      'Developer Tools & IDEs': '开发者工具与 IDE',
+      'Backend, Database & DevOps': '后端、数据库与运维',
+      'Productivity & SaaS': '效率工具与 SaaS',
+      'Design & Creative Tools': '设计与创意工具',
+      'Fintech & Crypto': '金融科技与加密货币',
+      'E-commerce & Retail': '电商与零售',
+      'Media & Consumer Tech': '媒体与消费科技',
+      Automotive: '汽车',
+      'Retro Web · DESIGN.md Nostalgia': '复古网页',
+      Other: '其他',
+    },
+  },
+  en: {
+    gallery: 'Gallery',
+    appTagline: 'A lookbook of design systems',
+    tabExport: 'Export',
+    compare: 'Compare',
+    compareTitle: 'Compare styles',
+    compareHint: 'See two design systems side by side on the same sample page.',
+    swap: 'Swap',
+    random: 'Random',
+    viewDetail: 'View details',
+    about: 'About',
+    aboutTitle: 'About Lookbook',
+    aboutBody: [
+      'Lookbook is a catalogue of design systems: it renders the tokens in each DESIGN.md onto the same sample page, so you can see how a style looks before you build with it.',
+      'DESIGN.md is a plain-text design spec written for AI coding agents. Once you have picked a style, copy the DESIGN.md or the ready-made AI prompt into Claude, Cursor and friends — or export CSS variables, a Tailwind config or Design Tokens JSON to use the tokens in code directly.',
+      'Previews are generated from tokens. When a brand font is proprietary, the template’s own fallback stack is used; templates that only describe their design in prose get an approximate, inferred preview.',
+    ],
+    howTitle: 'How to use it',
+    howSteps: ['Browse, search or filter the gallery by category.', 'Open a template to see the page preview, design tokens and components.', 'In the Export tab, copy the AI prompt or download tokens for your stack.', 'Undecided? Use Compare to put two styles side by side.'],
+    creditsTitle: 'Credits',
+    attribution: (link) => `Template data from ${link} (MIT licence).`,
+    feedback: 'Feedback',
+    notFound: 'Page not found',
+    notFoundBody: 'This page does not exist — the link may be wrong or the template may have been removed.',
+    backHome: 'Back to the gallery',
+    skip: 'Skip to main content',
+    searchLabel: 'Search templates',
+    filterLabel: 'Template filters',
+    tabsLabel: 'Template views',
+    langLabel: '切换到中文',
+    loading: 'Loading…',
+    copy: 'Copy',
+    download: 'Download',
+    promptTitle: 'AI prompt',
+    promptHint: 'Send it with your request to an AI coding assistant (Claude, Cursor, Copilot…). It already spells out the core colours, fonts, radii and key components.',
+    includeFull: 'Append the full DESIGN.md (more precise, but longer)',
+    cssTitle: 'CSS variables',
+    cssHint: 'Drop into a global stylesheet and use anywhere via var(--…).',
+    tw4Title: 'Tailwind CSS v4',
+    tw4Hint: 'Paste after @import "tailwindcss"; in your entry CSS to get classes like bg-primary, font-display and rounded-lg.',
+    tw3Title: 'Tailwind CSS v3',
+    tw3Hint: 'Save as tailwind.config.cjs (CommonJS, so it also works in ESM projects); the tokens are merged into the default theme.',
+    dtcgTitle: 'Design Tokens JSON',
+    dtcgHint: 'W3C design-token format, importable into the Tokens Studio Figma plugin or Style Dictionary.',
+    exportApprox: 'This template has no YAML tokens; the export is inferred from the colours and fonts in its prose and is only approximate.',
+
+    search: 'Search templates (name / description)…',
+    all: 'All',
+    dark: 'Dark',
+    light: 'Light',
+    noMatch: 'No matching templates',
+    approx: 'Approx.',
+    approxTitle: 'This template has no YAML tokens; the preview is inferred from its prose',
+    approxWarn: 'This template has no YAML token frontmatter. The preview is inferred from the colours and fonts described in the document and is only approximate.',
+    tabPreview: 'Preview',
+    tabTokens: 'Design Tokens',
+    tabComponents: 'Components',
+    tabDocs: 'DESIGN.md',
+    colors: 'Colors',
+    typography: 'Typography',
+    scales: 'Scales',
+    radius: 'Radius',
+    spacing: 'Spacing',
+    none: 'None',
+    prev: 'Previous',
+    next: 'Next',
+    copyMd: 'Copy DESIGN.md',
+    copied: 'Copied ✓',
+    copyFail: 'Copy failed',
+    clickCopy: 'Click to copy',
+    swCopied: 'Copied',
+    noFonts: 'No font information found in the document',
+    noComps: 'This template has no structured component tokens (prose only). See the DESIGN.md tab.',
+    navLinks: ['Product', 'Solutions', 'Pricing', 'Docs'],
+    footLinks: ['Privacy', 'Terms', 'Status'],
+    signUp: 'Sign up',
+    getStarted: 'Get started',
+    talkSales: 'Talk to sales',
+    tagNew: (name) => `New · ${name} 2026`,
+    heroTitle: 'Build something people love.',
+    heroSub: (name) => `A preview generated from the ${name} DESIGN.md tokens — colours, type scale, radii and component specs.`,
+    cardTitles: ['Ship faster', 'Built to scale', 'Designed for teams'],
+    cardCopy: [
+      'A concise feature description that shows how body copy sits inside this card.',
+      'Secondary text, spacing and corner radius come straight from the template tokens.',
+      'Every surface, border and type role is pulled from the DESIGN.md frontmatter.',
+    ],
+    footer: (name) => `© 2026 ${name}-inspired preview`,
+    pangram: 'The quick brown fox jumps over the lazy dog — 1234567890',
+    pangramShort: 'The quick brown fox jumps over the lazy dog',
+    display: 'Design that ships',
+    tablePlan: 'Plan',
+    tablePrice: 'Price',
+    tableRows: ['Starter', 'Pro'],
+    placeholderSearch: 'Search…',
+    label: 'Label',
+    readDocs: 'Read the docs →',
+    brand: 'Brand',
+    items: ['Item one', 'Item two', 'Item three'],
+    sampleContent: "Sample content rendered with this component's tokens.",
+    categories: {},
+  },
+}
+
+// Browser-only bits are guarded so this module also loads in Node (prerender, tests).
+const hasDom = typeof document !== 'undefined'
+
+function initialLang() {
+  try {
+    const saved = localStorage.getItem('lookbook-lang')
+    if (saved === 'zh' || saved === 'en') return saved
+  } catch {}
+  return 'zh'
+}
+
+let lang = hasDom ? initialLang() : 'zh'
+
+export const getLang = () => lang
+export function setLang(l, { persist = true } = {}) {
+  lang = l
+  if (!hasDom) return
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en'
+  if (persist) {
+    try {
+      localStorage.setItem('lookbook-lang', l)
+    } catch {}
+  }
+}
+setLang(lang, { persist: false })
+
+export const tr = (key) => dict[lang][key]
+// Template copy: Chinese translation when available, otherwise the English source.
+export const tagline = (t) => (lang === 'zh' && zh[t.slug]?.[0]) || t.tagline
+export const describe = (t) => (lang === 'zh' && zh[t.slug]?.[1]) || t.description
+export const searchText = (t) => [t.name, t.slug, t.tagline, t.description, ...(zh[t.slug] || [])].join(' ').toLowerCase()
+export const catName = (c) => dict[lang].categories[c] || c
